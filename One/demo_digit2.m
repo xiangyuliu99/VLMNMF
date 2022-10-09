@@ -24,7 +24,7 @@ options.kmeans = 1;%代表需不需要在V上需不需要进行kmeans
 options.alpha=0.01;%μ=0.01
 options.theta =0.001;%0.001 
 options.beta = 0.001;%0.001   0.7091
-options.eta = 0;
+
 
 %% read dataset
 %   load 3sources.mat;

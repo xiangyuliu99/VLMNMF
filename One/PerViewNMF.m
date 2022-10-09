@@ -25,8 +25,6 @@ meanFitRatio = options.meanFitRatio;
 mu = options.mu;
 alpha=mu*options.alpha;
 theta=mu*options.theta;
-eta = mu*options.eta;
-
 Norm = 1;
 NormV = 0;
 [mFea,nSmp]=size(X);
@@ -124,7 +122,7 @@ while tryNo < nRepeat
 
         U = U.*(XV./max(UVV,1e-10)); 
         % ===================== update F ========================
-        F = F.*((theta*C*V'+eta*F*W)./(theta*F+eta*F*D+eps));
+        F = F.*((theta*C*V')./(theta*F+eps));
 %         F = C*V';
         
         % ===================== update C ========================

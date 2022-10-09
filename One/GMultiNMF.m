@@ -30,7 +30,6 @@ bro=options.bro;
 nu1=options.nu1;
 nu2=options.nu2;
 theta = options.theta;
-eta = options.eta;
 beta = options.beta;
 N = size(X{1},2);
 K_complement = zeros(N,N);
@@ -186,7 +185,7 @@ while j < Rounds%Rounds当j《30
         tmp4=(F{i}-P{i}*V{i}');
         
 %         logL = logL + sum(sum(tmp1.^2)) + mu_i* (sum(sum(tmp2.^2)))+sum(sum((V{i}'*L)*V{i}))+;  %修改，加入SampleW和V'*L*V,损失函数
-          logL = logL + norm(tmp1,'fro')^2  + options.alpha*mu_i*norm(tmp2,'fro')^2+trace((V{i}'*L)*V{i})+mu_i*theta*norm(tmp4,'fro')^2+eta*trace((F{i}*L)*F{i}');
+          logL = logL + norm(tmp1,'fro')^2  + options.alpha*mu_i*norm(tmp2,'fro')^2+trace((V{i}'*L)*V{i})+mu_i*theta*norm(tmp4,'fro')^2;
     end
     tmp5 = (centroidV' - C*H);
     logL = logL + beta*norm(tmp5,'fro')^2 ;
@@ -237,7 +236,6 @@ while j < Rounds%Rounds当j《30
     for i = 1:viewNum
         optionsForCerViewNMF.mu = options.mu(i);
         optionsForCerViewNMF.theta = options.theta;
-        optionsForCerViewNMF.eta = options.eta;
         rand('twister',5489);
         [U{i}, V{i},F{i},P{i}] = PerViewNMF(X{i},F{i},P{i},K, centroidV, W{i} , optionsForCerViewNMF, finalU{i}, finalV{i},bro,nu1,nu2); 
     end
